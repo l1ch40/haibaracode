@@ -1,6 +1,7 @@
 package v1
 
 import (
+	"errors"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 	"haibaracode/dto"
@@ -68,8 +69,8 @@ func LoginHandle(c *gin.Context) (interface{}, error) {
 		}
 	}
 
-	userID, err := service.GetUserIDByUsername(userDto)
-	err = cookie.SetCookie(c, userID)
+	userID, err := service.GetUserIDByUsername(userDto.Username)
+	err = cookie.CreateCookie(c, userID)
 	if err != nil {
 		return nil, e.ApiError{
 			Status:  422,
@@ -78,4 +79,21 @@ func LoginHandle(c *gin.Context) (interface{}, error) {
 		}
 	}
 	return "登录成功", nil
+}
+
+func LogoutHandle(c *gin.Context) (interface{}, error) {
+	userID, err := cookie.ReadCookie(c)
+	if err != nil {
+		return nil, e.ApiError{
+			Status:  422,
+			Code:    40007,
+			Message: err.Error(),
+		}
+	}
+	service := user.UserService{}
+	if service.HasUserID(userID) {
+		cookie.DeleteCookie(c)
+		return "登出成功。", nil
+	}
+	return nil, errors.New("登出失败。")
 }

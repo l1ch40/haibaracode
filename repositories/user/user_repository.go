@@ -22,3 +22,9 @@ func GetUserByUsername(username string) models.User {
 
 	return user
 }
+
+func GEtUserByUserID(userID string) models.User {
+	user := models.User{}
+	models.DB.Find(&user, models.DB.Where("uid = ?", userID))
+	return user
+}

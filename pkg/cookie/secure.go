@@ -22,12 +22,16 @@ var (
 	s        = securecookie.New(hashKey, blockKey)
 )
 
-func SetCookie(c *gin.Context, value string) error {
+func CreateCookie(c *gin.Context, value string) error {
 	encoded, err := s.Encode(CookieName, value)
 	if err == nil {
 		c.SetCookie(CookieName, encoded, CookieMaxAge, CookiePath, CookieDomain, CookieSecure, CookieHttpOnly)
 	}
 	return err
+}
+
+func DeleteCookie(c *gin.Context) {
+	c.SetCookie(CookieName, "", -1, CookiePath, CookieDomain, CookieSecure, CookieHttpOnly)
 }
 
 func ReadCookie(c *gin.Context) (string, error) {
