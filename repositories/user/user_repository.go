@@ -9,7 +9,7 @@ func CreateUser(dto dto.UserDto) error {
 	user := models.User{}
 	user.Username = dto.Username
 	user.Password = dto.Password
-	user.UId = dto.UId
+	user.UID = dto.UId
 
 	err := models.DB.Create(&user).Error
 

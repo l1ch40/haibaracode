@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 	"haibaracode/dto"
+	"haibaracode/pkg/cookie"
 	"haibaracode/pkg/e"
 	"haibaracode/requests/v1"
 	"haibaracode/services/user"
@@ -63,6 +64,16 @@ func LoginHandle(c *gin.Context) (interface{}, error) {
 		return nil, e.ApiError{
 			Status:  422,
 			Code:    40005,
+			Message: err.Error(),
+		}
+	}
+
+	userID, err := service.GetUserIDByUsername(userDto)
+	err = cookie.SetCookie(c, userID)
+	if err != nil {
+		return nil, e.ApiError{
+			Status:  422,
+			Code:    40006,
 			Message: err.Error(),
 		}
 	}
