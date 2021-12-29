@@ -7,7 +7,7 @@ import (
 )
 
 func UserRouter(r *gin.Engine) {
-	r.POST("/user", e.ErrorWrapper(v1.RegisterHandler))
-
+	r.POST("/users", e.ErrorWrapper(v1.RegisterHandler))
 	r.POST("/login", e.ErrorWrapper(v1.LoginHandle))
+	r.DELETE("/sessions", e.ErrorWrapper(v1.LogoutHandle))
 }

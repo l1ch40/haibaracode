@@ -32,11 +32,18 @@ func (user UserService) Login(userDto dto.UserDto) error {
 	return nil
 }
 
-func (user UserService) GetUserIDByUsername(userDto dto.UserDto) (string, error) {
-	model := user2.GetUserByUsername(userDto.Username)
+func (user UserService) GetUserIDByUsername(username string) (string, error) {
+	model := user2.GetUserByUsername(username)
 	if model.ID == 0 {
 		return "", errors.New("账号不存在")
 	}
 	return model.UID, nil
+}
 
+func (user UserService) HasUserID(userID string) bool {
+	model := user2.GEtUserByUserID(userID)
+	if model.ID == 0 {
+		return false
+	}
+	return true
 }
