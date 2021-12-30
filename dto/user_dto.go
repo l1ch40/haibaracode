@@ -2,7 +2,7 @@ package dto
 
 type UserDto struct {
 	ID       uint
-	UId      string
+	UID      string
 	Username string
 	Password string
 }

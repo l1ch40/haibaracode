@@ -9,7 +9,7 @@ func CreateUser(dto dto.UserDto) error {
 	user := models.User{}
 	user.Username = dto.Username
 	user.Password = dto.Password
-	user.UID = dto.UId
+	user.UID = dto.UID
 
 	err := models.DB.Create(&user).Error
 
@@ -23,7 +23,7 @@ func GetUserByUsername(username string) models.User {
 	return user
 }
 
-func GEtUserByUserID(userID string) models.User {
+func GetUserByUserID(userID string) models.User {
 	user := models.User{}
 	models.DB.Find(&user, models.DB.Where("uid = ?", userID))
 	return user
