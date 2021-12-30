@@ -3,6 +3,7 @@ package dto
 type ContainerDto struct {
 	ID     uint
 	PID    uint
+	CID    string
 	Image  string
 	Status uint
 }
