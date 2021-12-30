@@ -5,6 +5,7 @@ import "github.com/jinzhu/gorm"
 type Container struct {
 	gorm.Model
 	PID    uint `gorm:"not null"`
+	CID    string
 	Status uint
 	Image  string
 }
@@ -21,6 +22,6 @@ type ContainerProtocol struct {
 	ContainerID   uint `gorm:"not null"`
 	Protocol      string
 	HostIP        string
-	HostPort      uint
-	ContainerPort uint
+	HostPort      string
+	ContainerPort string
 }

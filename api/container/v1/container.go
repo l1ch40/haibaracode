@@ -8,18 +8,9 @@ import (
 	"haibaracode/services/container"
 )
 
-const (
-	CREATED = iota
-	STARTING
-	READY
-	DESTROYED
-	FAILED
-)
-
 func CreateHandle(c *gin.Context) (interface{}, error) {
 	pidRequest := v1.CreateContainerRequestUri{}
 	errPID := c.ShouldBindUri(&pidRequest)
-
 	imageRequest := v1.CreateContainerRequestJson{}
 	errImage := c.ShouldBind(&imageRequest)
 
@@ -34,7 +25,6 @@ func CreateHandle(c *gin.Context) (interface{}, error) {
 	containerDto := dto.ContainerDto{}
 	containerDto.PID = pidRequest.PID
 	containerDto.Image = imageRequest.Image
-	containerDto.Status = CREATED
 
 	service := container.ContainerService{}
 	err := service.Create(containerDto)
