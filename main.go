@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	r := gin.Default()
+	r := gin.New()
 	routers.Init(r)
 	r.Run(fmt.Sprintf("%s:%d", config.Server.Address, config.Server.Port))
 }

@@ -26,7 +26,7 @@ func RegisterHandler(c *gin.Context) (interface{}, error) {
 	userDto := dto.UserDto{
 		Username: request.Username,
 		Password: request.Password,
-		UId:      uuid.New().String(),
+		UID:      uuid.New().String(),
 	}
 
 	service := user.UserService{}

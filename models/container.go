@@ -4,7 +4,7 @@ import "github.com/jinzhu/gorm"
 
 type Container struct {
 	gorm.Model
-	UID    uint `gorm:"not null"`
+	PID    uint `gorm:"not null"`
 	Status uint
 	Image  string
 }

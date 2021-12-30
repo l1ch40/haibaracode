@@ -41,7 +41,7 @@ func (user UserService) GetUserIDByUsername(username string) (string, error) {
 }
 
 func (user UserService) HasUserID(userID string) bool {
-	model := user2.GEtUserByUserID(userID)
+	model := user2.GetUserByUserID(userID)
 	if model.ID == 0 {
 		return false
 	}

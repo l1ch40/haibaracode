@@ -34,4 +34,8 @@ func init() {
 
 func migrate() {
 	DB.AutoMigrate(&User{})
+	DB.AutoMigrate(&Project{})
+	DB.AutoMigrate(&Container{})
+	DB.AutoMigrate(&ContainerAuth{})
+	DB.AutoMigrate(&ContainerProtocol{})
 }
